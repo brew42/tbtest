@@ -1,0 +1,42 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd"
+	updateCheck="false"
+	monitoring="autodetect"
+	dynamicConfig="true">
+	
+
+	<cache name="aggs"
+           eternal="true"
+           maxElementsInMemory="10" 
+           overflowToDisk="false" 
+           diskPersistent="false"
+           timeToIdleSeconds="1000" 
+        	  timeToLiveSeconds="3000"
+           memoryStoreEvictionPolicy="FIFO"/>
+           
+    <cache name="aggsAuth"
+           eternal="true"
+           maxElementsInMemory="10" 
+           overflowToDisk="false" 
+           diskPersistent="false"
+           timeToIdleSeconds="1000" 
+        	  timeToLiveSeconds="3000"
+           memoryStoreEvictionPolicy="FIFO"/>
+           
+    <cache name="tableTags"
+           eternal="true"
+           maxElementsInMemory="100" 
+           overflowToDisk="false" 
+           diskPersistent="false"
+           timeToIdleSeconds="1000" 
+        	  timeToLiveSeconds="3000"
+           memoryStoreEvictionPolicy="FIFO"/>
+</ehcache>
+
+<!-- timeToIdleSeconds="30" 
+The maximum number of seconds an element can exist in the cache without being accessed. The element expires at this limit and will no longer be returned from the cache. The default value is 0, which means no timeToIdle (TTI) eviction takes place (infinite lifetime).
+
+timeToLiveSeconds="60"
+The maximum number of seconds an element can exist in the cache regardless of use. The element expires at this limit and will no longer be returned from the cache. The default value is 0, which means no timeToLive (TTL) eviction takes place (infinite lifetime).
+
+Local sizing attributes maxEntriesLocalHeap, maxBytesLocalHeap, maxEntriesLocalDisk, maxBytesLocalDisk -->

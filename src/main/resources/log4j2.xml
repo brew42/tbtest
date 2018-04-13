@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration name="anaeko" packages="org.apache.logging.log4j.test" monitorInterval="30">
+  
+  <Filter type="ThresholdFilter" level="info"/>
+ 
+  <Appenders>
+    <Console name="STDOUT">
+      <PatternLayout pattern="%d{dd MMM yyyy HH:mm:ss.SSS} %p [%t] %m%n" />
+    </Console>  
+      
+    <RollingRandomAccessFile name="FILE" fileName="logs/general.log"  immediateFlush="true" filePattern="logs/$${date:yyyy-MM}/%d{yyyy-MM-dd}-general.log.%i">
+      <PatternLayout pattern="%d{dd MMM yyyy HH:mm:ss.SSS} %p [%t] %m%n" />
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+    </RollingRandomAccessFile>
+    
+  <RollingRandomAccessFile name="TIMESERIES_FILE" fileName="logs/timeseries.log" immediateFlush="true" filePattern="logs/$${date:yyyy-MM}/%d{yyyy-MM-dd}-timeseries.log.%i">
+      <PatternLayout pattern="%d{dd MMM yyyy HH:mm:ss.SSS} %p [%t] %m%n" />
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+    </RollingRandomAccessFile>
+
+    
+     <RollingRandomAccessFile name="SCHEDULE_FILE" fileName="logs/schedule.log" immediateFlush="true" filePattern="logs/$${date:yyyy-MM}/%d{yyyy-MM-dd}-schedule.log.%i">
+      <PatternLayout pattern="%d{dd MMM yyyy HH:mm:ss.SSS} %p [%t] %m%n" />
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+    </RollingRandomAccessFile>
+    
+  </Appenders>
+ 
+  <!--General Log Level. You can fine tune this with further loggers -->
+  <Loggers>
+    <Logger name="com.anaeko" level="info" additivity="false">
+      <AppenderRef ref="FILE"/>
+    </Logger>
+    
+      <!-- Logging for time series module-->
+    <Logger name="TimeSeries.logging" level="info" additivity="false">
+        <AppenderRef ref="TIMESERIES_FILE"/>
+    </Logger> 
+    
+    
+      <!-- Logging for time series module-->
+    <Logger name="Schedule.logging" level="info" additivity="false">
+        <AppenderRef ref="SCHEDULE_FILE"/>
+    </Logger> 
+    
+    <Root level="info">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+ 
+</Configuration>

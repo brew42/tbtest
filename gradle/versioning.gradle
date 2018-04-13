@@ -1,0 +1,50 @@
+ext.buildTimestamp = new Date().format("yyy-MM-dd HH:mm:ss")
+
+if (null == System.getProperty("SPRINT_VERSION"))
+   version = new ProjectVersion(System.env.MAJOR_BUILD,System.env.MINOR_BUILD,System.env.BUILD_NUMBER)
+else
+   version = System.getProperty("SPRINT_VERSION")
+   
+ext.compVersion = new ComponentVersion(System.getProperty("COMP_VERSION"))
+
+class ProjectVersion {
+	String major
+	String minor
+	String build
+	
+	
+	ProjectVersion(String major, String minor, String build) {
+		this.major = major
+		this.minor = minor
+		this.build = build
+	}
+	
+	@Override
+	String toString() {
+		String fullVersion = "$major.$minor"
+		
+		if(build) {
+			fullVersion += ".$build"
+		}
+		
+		fullVersion
+	}
+}
+
+class ComponentVersion {
+	String compVersion
+	
+	ComponentVersion(String compVersion) {
+		if(compVersion == null){
+			this.compVersion = ""
+		}else{
+			this.compVersion = compVersion
+		}
+
+	}
+	
+	@Override
+	String toString() {
+		this.compVersion
+	}
+}
