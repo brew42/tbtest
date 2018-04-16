@@ -7,6 +7,8 @@ phases:
   post_build:
     commands:
       - ls -l
+      - ls -l build
+      - ls -l build/libs
 artifacts:
   files:
     - 'build/libs/awscodedeploy-null.null.jar'
