@@ -8,8 +8,7 @@ phases:
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - echo Logged in complete...
       - REPOSITORY_URI=930803698600.dkr.ecr.eu-west-1.amazonaws.com/tbtest
-      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
-      - IMAGE_TAG=$(echo $CODEBUILD_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=123
   build:
     commands:
       - echo Gradle Build started on `date`
