@@ -1,0 +1,10 @@
+version: 0.2
+ 
+phases:
+  build:
+    commands:
+      - ./gradlew clean build -x test
+artifacts:
+  files:
+    - 'Dockerfile'
+    - 'build/libs/awscodedeploy-null.null.jar'
