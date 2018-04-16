@@ -13,7 +13,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image... 
-      - ls -l        
+      - ls -l  ../     
       - docker build .
       - ls -l   build
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
