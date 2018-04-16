@@ -1,15 +1,26 @@
 version: 0.2
- 
+
 phases:
-  build:
+  pre_build:
     commands:
-      - chmod a+x ./gradlew
-      - ./gradlew clean build -x test
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=https://s3-eu-west-1.amazonaws.com/tbcodepipeline
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+  build:tbtest-null.null.jar
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
-      - ls -l
-      - ls -l build
-      - ls -l build/libs
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"hello-world","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
-  files:
-    - 'build/libs/src-null.null.jar'
+    files: imagedefinitions.json
