@@ -13,11 +13,13 @@ phases:
     commands:
       - echo Gradle Build started on `date`
       - ./gradlew clean build -x test
-      - ls -l
+      - ls -l build
       - echo DockerBuild started on `date`
       - echo Building the Docker image... 
       - docker build .
       - ls -l   build
+      - echo  $REPOSITORY_URI
+      - echo  $IMAGE_TAG
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
