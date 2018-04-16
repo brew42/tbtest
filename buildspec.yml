@@ -11,9 +11,11 @@ phases:
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
     commands:
-      - echo Build started on `date`
+      - echo Gradle Build started on `date`
+      - ./gradlew clean build -x test
+      - ls -l
+      - echo DockerBuild started on `date`
       - echo Building the Docker image... 
-      - ls -l  ../     
       - docker build .
       - ls -l   build
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
