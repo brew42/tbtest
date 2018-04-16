@@ -12,4 +12,4 @@ phases:
       - ls -l build/libs
 artifacts:
   files:
-    - 'build/libs/tbtest-null.null.jar'
+    - 'build/libs/src-null.null.jar'
