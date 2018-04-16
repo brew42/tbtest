@@ -1,6 +1,7 @@
 FROM java:8
 VOLUME /tmp
-echo -e "ls -l build/libs"
+RUN ls -l
+RUN ls -l build
 ADD build/libs/tbtest-null.null.jar awscodedeploy.jar
 RUN bash -c 'touch /awscodedeploy.jar'
 ENV JAVA_OPTS=""
