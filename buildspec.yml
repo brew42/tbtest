@@ -11,4 +11,4 @@ phases:
       - ls -l build/libs
 artifacts:
   files:
-    - 'build/libs/awscodedeploy-null.null.jar'
+    - 'build/libs/tbtest-null.null.jar'
