@@ -4,8 +4,10 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
+      - echo $AWS_DEFAULT_REGION
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - echo Logged in complete...
       - REPOSITORY_URI=https://s3-eu-west-1.amazonaws.com/tbcodepipeline
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
