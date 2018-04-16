@@ -1,7 +1,0 @@
-   ## YAML Template.
----
-version: 0.0
-os: linux
-files:
-  - source: /
-    destination: /opt/timeseries/dev
