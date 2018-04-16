@@ -4,7 +4,9 @@ phases:
   build:
     commands:
       - ./gradlew clean build -x test
+  post_build:
+    commands:
+      - ls -l
 artifacts:
   files:
-    - 'Dockerfile'
     - 'build/libs/awscodedeploy-null.null.jar'
