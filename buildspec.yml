@@ -26,6 +26,6 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"tbtest","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > ecsService.json
+      - printf '[{"name":"latestdocker","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > ecsService.json
 artifacts:
     files: ecsService.json
